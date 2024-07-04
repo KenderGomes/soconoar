@@ -15,24 +15,31 @@ export default function Login() {
     <Image style={estilos.img} source="https://img.icons8.com/color/96/lock--v1.png"/>
       <BaseCard title="Soco Aéreo - Login" sub="Soca teus segredos nessa caixa 🫣">
         <TextInput
+          label="Nome"
+          value={nome}
+          onChangeText={(text) => setNome (text)}
+          mode="outlined"
+        />
+
+        <TextInput
           label="E-mail"
           value={email}
-          onChangeText={(texto) => setEmail(texto)}
+          onChangeText={(text) => setEmail(text)}
           mode="outlined"
         />
 
         <TextInput
           label="Senha"
           value={senha}
-          onChangeText={(texto) => setSenha(texto)}
+          onChangeText={(text) => setSenha(text)}
           secureTextEntry // Adicionei esta propriedade para ocultar a entrada da senha
           mode="outlined"
         />
-        <Button style={estilos.btn} mode="contained" onPress={fazerLogin}>Entrar</Button>
-        <Button style={{marginTop: 10}} onPress={showModal}>Cadastrar</Button>
+        <Button style={estilos.btn} mode="contained" onPress={cadastrar}>Cadastrar</Button>
+        <Button style={{marginTop: 10}} onPress={hideModal}>Cadastrar</Button>
       </BaseCard>
       <BaseModal>
-      <Text>Funfou modal</Text>
+      <Text>Cadastro do usuário</Text>
       </BaseModal>
     </View>
   );

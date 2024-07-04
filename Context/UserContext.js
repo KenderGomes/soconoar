@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {app} from '../config.firebase'
-import { getAuth, signInWithEmailAndPassaword} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassaword, signInWithEmailAndPassword} from 'firebase/auth';
 export const UserContextGlobal = React.createContext({});
 
 export default function UseContext(props) {
 
+  const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [senha, setSenha] = React.useState('');
   const [logado, setLogado] = React.useState(false);
@@ -28,6 +29,13 @@ export default function UseContext(props) {
 
 }
 
+  function cadastrar(){
+    const auth = getAuth(app)
+    signInWithEmailAndPassword(auth, email, senha)
+    .then(user => hideModal())
+    .catch(erro => console.log("Erro no login, tente novamente"))
+  }
+
   return (
     <UserContextGlobal.Provider
       value={{
@@ -40,7 +48,9 @@ export default function UseContext(props) {
         fazerLogin,
         visible,
         showModal,
-        hideModal
+        hideModal,
+        cadastrar,
+        nome
       }}>
       {props.children}
     </UserContextGlobal.Provider>
